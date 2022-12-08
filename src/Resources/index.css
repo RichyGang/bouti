@@ -1,0 +1,48 @@
+
+.search-fields {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.resource-card {
+    height: 200px;
+    width: 200px;
+    border: 1px #282c34 solid;
+    border-radius: 7px;
+    margin-left: 20px;
+}
+
+.resource-display {
+    display: flex;
+}
+
+.img-card {
+    height: 100px;
+    width: auto;
+}
+
+.button-add {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #282c34 solid;
+}
+
+.block-new-resource {
+    margin: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.resource-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 500px;
+}
+
+.input-attribute {
+    height: 20px;
+}

@@ -1,0 +1,22 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100px;
+}
+
+.secondary {
+    color:white;
+    background-color:darkgrey;
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.choose {
+    color:white;
+    background-color:rgba(232,53,0,0.74);
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+}

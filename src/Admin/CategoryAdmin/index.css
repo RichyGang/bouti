@@ -1,0 +1,35 @@
+
+.admin_categories {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+}
+
+.units {
+    align-items: center;
+    border: 1px solid black;
+    margin: 30px;
+}
+
+.attributes {
+    display: flex;
+    align-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 400px;
+}
+
+.add_category_attributes {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    gap: 5px;
+    align-content: flex-start;
+}
+
+.new_category_attribute {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+}
