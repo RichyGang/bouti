@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css'
-import {removeCategoryAttribute} from "../../Redux/reducers/categories";
+import {removeCategoryAttribute} from "../../../Redux/reducers/categories";
 import {useDispatch} from "react-redux";
 
 const CategoryAttributesAdmin = (props) => {

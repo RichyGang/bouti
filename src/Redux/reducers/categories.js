@@ -1,4 +1,5 @@
 import axios from "axios";
+import {my_app} from "../../Axios/constants";
 
 export const getCategories = () => {
     return (dispatch) => {
@@ -11,17 +12,26 @@ export const getCategories = () => {
     }
 }
 
-export const putCategoryAttribute = ({categoryAttribute, category}) => {
-    return (dispatch) => {
-        const oldCategoryAttributes = category.categoryAttributes.map((attribute)=> "/api/category_attributes/" + attribute.id)
-        axios
-            .put("https://127.0.0.1:8000/api/categories/" + category.id, {
-                categoryAttributes : [...oldCategoryAttributes, "/api/category_attributes/" + categoryAttribute.id]
-            })
-            .then(response => dispatch({type: "PUT_CATEGORY_ATTRIBUTE", payload: response.data}))
+export const postCategory = (newCategory) => {
+    return(dispatch) => {
+        my_app
+            .post("categories", newCategory)
+            .then(response => {dispatch({type: "POST_CATEGORY", payload: response.data})})
             .catch(error => console.log(error))
     }
 }
+
+// export const putCategoryAttribute = ({categoryAttribute, category}) => {
+//     return (dispatch) => {
+//         const oldCategoryAttributes = category.categoryAttributes.map((attribute)=> "/api/category_attributes/" + attribute.id)
+//         axios
+//             .put("https://127.0.0.1:8000/api/categories/" + category.id, {
+//                 categoryAttributes : [...oldCategoryAttributes, "/api/category_attributes/" + categoryAttribute.id]
+//             })
+//             .then(response => dispatch({type: "PUT_CATEGORY_ATTRIBUTE", payload: response.data}))
+//             .catch(error => console.log(error))
+//     }
+// }
 
 export const removeCategoryAttribute = ({categoryAttribute, category}) => {
     return (dispatch) => {
@@ -44,11 +54,16 @@ export const categoriesReducer = (categories = null, action) => {
             return {
                 data: action.payload
             }
-        case "PUT_CATEGORY_ATTRIBUTE":
+        case "POST_CATEGORY":
             return {
                 ...categories,
-                data: [...categories.data.filter(category => category.id !== action.payload.id), action.payload]
+                data: [...categories.data, action.payload]
             }
+        // case "PUT_CATEGORY_ATTRIBUTE":
+        //     return {
+        //         ...categories,
+        //         data: [...categories.data.filter(category => category.id !== action.payload.id), action.payload]
+        //     }
         case "REMOVE_CATEGORY_ATTRIBUTE":
             return {
                 ...categories,

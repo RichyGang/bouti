@@ -1,8 +1,8 @@
 import React, {useRef} from "react";
 import './index.css'
 import {useDispatch} from "react-redux";
-import {postUnitConversion} from "../../Redux/reducers/units";
-import useFormatTextNumber from "../../hooks/useFormatTextNumber";
+import {postUnitConversion} from "../../../Redux/reducers/units";
+import useFormatTextNumber from "../../../hooks/useFormatTextNumber";
 
 const UnitsTable = (props) => {
 

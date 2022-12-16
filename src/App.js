@@ -2,22 +2,23 @@ import './App.css';
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 
-import Navbar from "./Navbar";
-import Home from "./Home";
-import Resources from "./Resources";
-import ShowResource from "./Resources/ShowResource";
-import Proposals from "./Proposals";
-import ShowProposal from "./Proposals/ShowProposal";
-import CategoryAdmin from "./Admin/CategoryAdmin";
-import Admin from "./Admin";
-import Matches from "./Matchs";
-import ShowMatch from "./Matchs/ShowMatch";
-import ThemeContext from "./Context/ThemeContext";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import Resources from "./Components/Resources";
+import ShowResource from "./Components/Resources/ShowResource";
+import Proposals from "./Components/Proposals";
+import ShowProposal from "./Components/Proposals/ShowProposal";
+import CategoryAdmin from "./Components/Admin/CategoryAdmin";
+import Admin from "./Components/Admin";
+import Matches from "./Components/Matchs";
+import ShowMatch from "./Components/Matchs/ShowMatch";
+import ThemeContext from "./Contexts/ThemeContext";
 import {useDispatch} from "react-redux";
 import {getCategories} from "./Redux/reducers/categories";
 import {getUnits} from "./Redux/reducers/units";
-import UnitsAdmin from "./Admin/UnitsAdmin";
-import NewResource from "./Resources/NewResource";
+import UnitsAdmin from "./Components/Admin/UnitsAdmin";
+import NewResource from "./Components/Resources/NewResource";
+import {UserContextProvider} from "./Contexts/UserContext";
 
 function App() {
     console.log("0")
@@ -36,28 +37,30 @@ function App() {
 
     return (
         <ThemeContext.Provider value={{theme, toggleTheme}}>
-            <div className={`App-${theme}`}>
-                <Navbar/>
-                <Routes>
-                    <Route exact path="/" element={<Home/>}/>
-                    <Route path="/resources" element={<Resources/>}/>
-                    <Route path="/resources/:resourceId" element={<ShowResource/>}/>
-                    <Route path="/resources/new" element={<NewResource/>}/>
-                    <Route path="/proposals" element={<Proposals/>}>
-                        <Route path=":proposalId" element={<ShowProposal/>}/>
-                    </Route>
-                    <Route path="/matches" element={<Matches/>}>
-                        <Route path=":matchId" element={<ShowMatch/>}/>
-                    </Route>
-                    <Route path="/admin" element={<Admin/>}>
-                        <Route path="categories" element={<CategoryAdmin/>}/>
-                        <Route path="units" element={<UnitsAdmin/>}/>
-                    </Route>
-                </Routes>
-                <footer>
-                    <p className="footer">Gang Gang Compagnie. All rights reserved.</p>
-                </footer>
-            </div>
+            <UserContextProvider>
+                <div className={`App-${theme}`}>
+                    <Navbar/>
+                    <Routes>
+                        <Route exact path="/" element={<Home/>}/>
+                        <Route path="/resources" element={<Resources/>}/>
+                        <Route path="/resources/:resourceId" element={<ShowResource/>}/>
+                        <Route path="/resources/new" element={<NewResource/>}/>
+                        <Route path="/proposals" element={<Proposals/>}>
+                            <Route path=":proposalId" element={<ShowProposal/>}/>
+                        </Route>
+                        <Route path="/matches" element={<Matches/>}>
+                            <Route path=":matchId" element={<ShowMatch/>}/>
+                        </Route>
+                        <Route path="/admin" element={<Admin/>}>
+                            <Route path="categories" element={<CategoryAdmin/>}/>
+                            <Route path="units" element={<UnitsAdmin/>}/>
+                        </Route>
+                    </Routes>
+                    <footer>
+                        <p className="footer">Gang Gang Compagnie. All rights reserved.</p>
+                    </footer>
+                </div>
+            </UserContextProvider>
         </ThemeContext.Provider>
 );
 }

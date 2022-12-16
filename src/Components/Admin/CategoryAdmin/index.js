@@ -5,8 +5,9 @@ import './index.css'
 import ChoiceCategory from "../../Categories/ChoiceCategory";
 import CategoryAttributesAdmin from "./CategoryAttributesAdmin";
 import AddCategoryAttributes from "./AddCategoryAttributes";
-import {getAllCategoryAttributes} from "../../Redux/reducers/categoryAttributes";
+import {getAllCategoryAttributes} from "../../../Redux/reducers/categoryAttributes";
 import NewCategoryAttribute from "./NewCategoryAttribute";
+import NewCategory from "./NewCategory";
 
 const CategoryAdmin = () => {
 
@@ -19,6 +20,7 @@ const CategoryAdmin = () => {
         dispatch(getAllCategoryAttributes())
     }, [])
 
+    console.log(states)
     return (
         <>
             {states.categories &&
@@ -28,6 +30,7 @@ const CategoryAdmin = () => {
                         category={category}
                         setCategory={setCategory}
                     />
+                    <NewCategory categoryParent={category}/>
                     <CategoryAttributesAdmin
                         category={category}
                         setCategory={setCategory}

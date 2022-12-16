@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 import "./index.css"
-import getCategoryPath from "./getCategoryPath";
+import useCategory from "../../hooks/useCategory";
 
 const ChoiceCategory = (props) => {
-    console.log("2")
+
+    const {getCategoryPath} = useCategory()
 
     const categoryChildren = props.category ?
         props.categories.filter(category => category.categoryParent && category.categoryParent.id === props.category.id)
         :
         props.categories.filter(category => category.categoryParent === props.category)
 
-    const path = props.category && getCategoryPath({category: props.category})
+    const path = props.category && getCategoryPath(props.category)
+
     return (
         <div className="categories">
             {props.category && <button className="secondary" onClick={()=>props.setCategory(null)}>catégories</button>}

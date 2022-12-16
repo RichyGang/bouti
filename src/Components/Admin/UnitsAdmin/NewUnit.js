@@ -1,7 +1,7 @@
 import React from "react";
 import './index.css'
 import {useDispatch} from "react-redux";
-import {postUnit} from "../../Redux/reducers/units";
+import {postUnit} from "../../../Redux/reducers/units";
 
 const NewUnit = () => {
 

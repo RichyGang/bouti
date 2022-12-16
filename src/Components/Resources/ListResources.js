@@ -1,13 +1,12 @@
 import React from 'react';
-import ResourceCard from "./ResourceCard";
+import CardResource from "./CardResource";
 import './index.css'
 
 const ListResources = (props) => {
 
-    const resourcesDisplay = props.resources.map(resource => <ResourceCard resource={resource}/>
+    const resourcesDisplay = props.resources.map(resource => <CardResource key={resource.id} resource={resource}/>
     )
 
-    console.log()
     return (
         <div className="resource-display">
             {resourcesDisplay}

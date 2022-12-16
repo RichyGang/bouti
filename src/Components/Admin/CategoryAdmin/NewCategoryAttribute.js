@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import './index.css'
 import {useDispatch, useSelector} from "react-redux";
-import {postCategoryAttribute} from "../../Redux/reducers/categoryAttributes";
+import {postCategoryAttribute} from "../../../Redux/reducers/categoryAttributes";
 
 const NewCategoryAttribute = () => {
 

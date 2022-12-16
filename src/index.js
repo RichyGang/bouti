@@ -6,17 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 import App from './App';
-import ShowResource from "./Resources";
-import Resources from "./Resources";
-import Proposals from "./Proposals";
-import ShowProposal from "./Proposals/ShowProposal";
-import Admin from "./Admin";
-import CategoryAdmin from "./Admin/CategoryAdmin";
-import Matches from "./Matchs";
-import ShowMatch from "./Matchs/ShowMatch";
+import ShowResource from "./Components/Resources";
+import Resources from "./Components/Resources";
+import Proposals from "./Components/Proposals";
+import ShowProposal from "./Components/Proposals/ShowProposal";
+import Admin from "./Components/Admin";
+import CategoryAdmin from "./Components/Admin/CategoryAdmin";
+import Matches from "./Components/Matchs";
+import ShowMatch from "./Components/Matchs/ShowMatch";
 import store from "./Redux/store";
-import UnitsAdmin from "./Admin/UnitsAdmin";
-import NewResource from "./Resources/NewResource";
+import UnitsAdmin from "./Components/Admin/UnitsAdmin";
+import NewResource from "./Components/Resources/NewResource";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +33,8 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "resources/new",
-                        element: <NewResource />
+                        element: <NewResource />,
+                        // errorElement: <ErrorBoundary/>
                     }
                 ]
             },
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
         ]
     }
 ])
+
+// function ErrorBoundary() {
+//     return redirect("/")
+// }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

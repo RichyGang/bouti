@@ -1,5 +1,8 @@
 
 import axios from "axios";
+import {my_app} from "../../Axios/constants";
+import {postMedia} from "./medias";
+import {postResourceAttribute} from "./resourceAttributes";
 
 export const getResources = () => {
     return (dispatch) => {
@@ -15,39 +18,37 @@ export const getResources = () => {
 }
 
 export const postResource = (resource, resourceAttributes) => {
+    const resourceMedias = resource.medias
+    // console.log(resourceMedias)
+    resource.medias = []
     return (dispatch) => {
-        console.log(resource, resourceAttributes)
-        resource.author =
-        axios
-            .post("https://127.0.0.1:8000/api/resources", resource)
+        my_app
+            .post("/resources", resource)
             .then(response => {
-                resourceAttributes.forEach(resourceAttribute => {
-                    resourceAttribute.resource = response.data
-                    console.log(resourceAttribute)
-                    dispatch(postResourceAttribute(resourceAttribute))
-                    }
-                )
-                dispatch(getResources)
+                resourceAttributes.forEach(
+                    resourceAttribute => {
+                        resourceAttribute.resources = [`/api/resources/${response.data.id}`]
+                        console.log(resourceAttribute)
+                        dispatch(postResourceAttribute(resourceAttribute))
+                    })
+                // dispatch(getResources)
+                postMedia({file: resourceMedias[0], object: {class: "resource", IRI:`/api/resources/${response.data.id}`}})
             })
             .catch(error => console.log(error))
+        // my_app
+        //     .post("/resources", resource)
+        //     .then(response => {
+        //         resourceAttributes.forEach(resourceAttribute => {
+        //             resourceAttribute.resource = response.data
+        //             console.log(resourceAttribute)
+        //             dispatch(postResourceAttribute(resourceAttribute))
+        //             }
+        //         )
+        //         dispatch(getResources)
+        //     })
+        //     .catch(error => console.log(error))
     }
 }
-
-export const postResourceAttribute = (resourceAttribute) => {
-    return (dispatch) => {
-        console.log(resourceAttribute)
-        axios
-            .post("https://127.0.0.1:8000/api/resources_attributes", resourceAttribute)
-            .then(response => {
-                console.log(response.data)
-                // dispatch({type:"POST_RESOURCE", payload: response.data})
-            }
-            )
-            .catch(error => console.log(error))
-    }
-}
-
-
 
 export const resourcesReducer = (resources= null, action) => {
     switch(action.type) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import ThemeContext from "../Context/ThemeContext";
+import ThemeContext from "../../Contexts/ThemeContext";
 import "./index.css"
-import TestComponent from "../tests/TestComponent";
+import TestComponent from "../../tests/TestComponent";
 
 const Home = () => {
     const {theme} = React.useContext(ThemeContext)
